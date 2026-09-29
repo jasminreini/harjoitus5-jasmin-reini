@@ -5,12 +5,12 @@ Ohjelmoinnin perusteiden harjoitus 5
 
 Täydennä tähän:
 
-- Nimi
-- Ryhmä
+- Nimi: Jasmin Reini
+- Ryhmä: TB00FY29
 
 ## Projektin kuvaus
 
-Kirjoita tähän projektin kuvaus.
+FoCar
 
 ## Käyttöohje
 
