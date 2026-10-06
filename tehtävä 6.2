@@ -1,0 +1,118 @@
+from machine import Pin, PWM 
+from time import sleep
+
+# Motor A / Moottori A
+e1 = PWM(Pin(28))
+m1 = Pin(27, Pin.OUT)
+
+# Motor B / Moottori B
+e2 = PWM(Pin(26))
+m2 = Pin(22, Pin.OUT)
+
+#funktiot
+def eteen():
+    e1.duty_u16(32767) # Nopeus 50%
+    e2.duty_u16(32767) # Nopeus 50%
+    
+
+def taakse():
+    # nopeus 50% - 100%
+    e1.duty_u16(32767)
+    e2.duty_u16(32767)
+
+def vasen(): 
+    e1.duty_u16(65535) # Nopeus100% 
+    e2.duty_u16(32767) # Nopeus 50%
+
+def oikea():
+    e1.duty_u16(32767) # Nopeus 50%
+    e2.duty_u16(65535) # Nopeus 100%
+
+def suuntaE():
+    m1.value(1) # Eteenpäin
+    m2.value(1) # Eteenpäin
+
+def suuntaT():
+    m1.value(0) #Taaksepäin
+    m2.value(0) # Taaksepäin
+
+
+# Set PWM frequency to 1000 Hz / Aseta PWM-taajuus 1000 Hz
+e1.freq(1000)
+e2.freq(1000)
+
+# 5 second timeout / 5 sekunnin tauko
+sleep(5)
+
+# Liike eteenpäin
+suuntaE()
+
+# funktio eteenpäin 50%
+eteen()
+
+# 2 sekunnin tauko
+sleep (2)
+
+# Liike eteenpäin
+suuntaE()
+
+# Funktio vasempaan käännös
+vasen()
+
+# Sekunnin tauko
+sleep(2)
+
+# Suunta eteenpäin
+suuntaE()
+
+# Funktio eteenpäin
+eteen()
+
+# Sekunnin tauko
+sleep(2)
+
+# liiku eteenpäin
+suuntaE()
+
+# Funktio eteenpäin
+oikea()
+
+# 2 sekunnin tauko
+sleep(2)
+
+# Liiku eteenpäin
+suuntaE()
+
+# Kääntö oikealle
+oikea()
+
+# 2 sekunnin tauko
+sleep(2)
+
+# Pyörähdä ympäri
+m1.value(1)
+m2.value(0)
+
+# Nopeus 50% - 100%
+e1.duty_u16(32767)
+e2.duty_u16(65535)
+
+# Tauko sekunti
+sleep(1)
+
+# Aja taaksepäin
+m1.value(0)
+m2.value(0)
+
+# Suunta taaksepäin
+taakse()
+
+# 2 sekunnin tauko
+sleep (2)
+
+# nopeus 0%
+e1.duty_u16(0)
+e2.duty_u16(0)
+
+# Wait 1 second for motors to stop / Odota yksi sekunti moottoreiden pysähtymistä
+sleep(1)
